@@ -21,11 +21,15 @@ jobs:
       - run: make
       - run: make clean
       - run: |
-          if [ -f ${{ env.EXECUTABLE }} ]; 
+          if [ ! -f ${{ env.EXECUTABLE }} ]; 
           then
-            echo "File is exist"
-          else
-          echo "File is not exist"
+            echo "File is not exist"
+            exit 1
+          fi
+          if [ ! -x ${{ env.EXECUTABLE }}]
+            then
+              echo "executable is not exist"
+              exit 1
           fi
 
   push_to_mirror:
