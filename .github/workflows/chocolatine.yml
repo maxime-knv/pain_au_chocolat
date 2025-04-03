@@ -9,6 +9,29 @@ on:
         - "ga-ignore-*"
 
 jobs:
+  check_coding_style:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    name: check_coding_style
+    container: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+          id: check_coding_style
+        - run: |
+              check.sh $(pwd) $(pwd)
+              cdsfile="coding-style-reports.log"
+              IFS=":"
+              while read -r file_name lines error_type error ; do
+                echo "$error_type $file_name $lines $error"
+              done < "$cdsfile"
+        - run: |
+            if [ -s "coding-style-reports.log" ]
+              then
+                exit 1
+            fi
+
   check_program_compilation:
     runs-on: ubuntu-latest
     env:
