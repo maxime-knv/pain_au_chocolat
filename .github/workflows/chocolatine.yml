@@ -14,8 +14,10 @@ jobs:
     env:
       EXECUTABLE: chocolatine
     timeout-minutes: 2
+    container:
+      image: epitechcontent/epitest-docker
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - run: make
@@ -31,8 +33,23 @@ jobs:
               echo "executable is not exist"
               exit 1
           fi
+          done
+
+  run_tests:
+    needs: check_program_compilation
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    container:
+      image: epitechcontent/epitest-docker
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          id: run_tests
+          run: make run_tests
 
   push_to_mirror:
+    needs: run_tests
     runs-on: ubuntu-latest
     env:
       MIRROR_URL: git@github.com:EpitechPGEPromo2029/B-DOP-200-PAR-2-1-chocolatine-maxime.kournikov.git
