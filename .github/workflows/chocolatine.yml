@@ -33,6 +33,7 @@ jobs:
             fi
 
   check_program_compilation:
+    needs: check_coding_style
     runs-on: ubuntu-latest
     env:
       EXECUTABLE: chocolatine
