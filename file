@@ -1,5 +1,8 @@
-file
-file
-file
-file
-file
+name,age,city,name,caca,city
+Alice,25,Paris,Alice,20,Paris
+Bob,30,London,Bob,40,London
+Charlie,35,Berlin,Charlie,15,Berlin
+Léo,25,Paris,Léo,22,Paris
+Nathan,30,London,Nathan,33,London
+Alex,35,Berlin,Alex,36,Berlin
+Paul,25,Paris,Paul,22,Paris
