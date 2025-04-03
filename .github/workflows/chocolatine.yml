@@ -21,7 +21,7 @@ jobs:
       - run: make
       - run: make clean
       - run: |
-          if test -f EXECUTABLE ;
+          if test -f env.EXECUTABLE ;
           then
             echo "File is exist"
           else
