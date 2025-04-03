@@ -21,7 +21,7 @@ jobs:
       - run: make
       - run: make clean
       - run: |
-          if test -f env.EXECUTABLE ;
+          if [ -f ${{ env.EXECUTABLE }} ]; 
           then
             echo "File is exist"
           else
