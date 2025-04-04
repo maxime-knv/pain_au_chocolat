@@ -31,7 +31,7 @@ jobs:
             IFS=":"
             while read -r file_name lines error_type error ; do
               cut -c 3- file_name
-              echo "::error title="${error_type} coding style error",file=$file_name,line=$lines::$error"
+              echo "::error title=${error_type} coding style error,file=$file_name,line=$lines::$error"
             done < "$cdsfile"
               if [ -s $cdsfile ]; then
                   exit 1
