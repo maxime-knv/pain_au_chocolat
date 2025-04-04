@@ -30,6 +30,7 @@ jobs:
             cdsfile="coding-style-reports.log"
             IFS=":"
             while read -r file_name lines error_type error ; do
+              file_name=`echo $file_name | cut -c 3-`
               # cut -c 3- file_name
               echo "::error title=${error_type} coding style error,file=$file_name,line=$lines::$error"
             done < "$cdsfile"
