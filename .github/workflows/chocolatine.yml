@@ -30,11 +30,9 @@ jobs:
                 file_name=`echo $file_name | cut -c 3-`
                 echo "::error file=$file_name,line=$lines::$error"
               done < "$cdsfile"
-        - name: check_coding_style_folder
-          run: |
-            if [ -s $cdsfile ]; then
-                exit 1
-            fi
+              if [ -s $cdsfile ] ; then
+                  exit 1
+              fi
 
   check_program_compilation:
     needs: check_coding_style
