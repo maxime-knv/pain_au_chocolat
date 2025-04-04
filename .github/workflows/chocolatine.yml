@@ -26,10 +26,11 @@ jobs:
               check.sh $(pwd) $(pwd)
               cdsfile="coding-style-reports.log"
               IFS=":"
-              while read -r file_name done lines error_type error ; do
-                file_name=`echo $file_name | cut -c 3-`
-                echo "::error file=$file_name,line=$lines::$error"
-              done < "$cdsfile"
+              while read -r file_name done lines error_type error
+                do
+                  file_name=`echo $file_name | cut -c 3-`
+                  echo "::error file=$file_name,line=$lines::$error"
+                done < "$cdsfile"
               if [ -s $cdsfile ] ; then
                   exit 1
               fi
