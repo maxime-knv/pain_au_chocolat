@@ -27,7 +27,7 @@ jobs:
             cdsfile="coding-style-reports.log"
             IFS=":"
             while read -r file_name lines error_type error ; do
-              echo "::error file=$file,line=$lines,title=$error_type::$error"
+              echo "::error title=$error_type,file=$file_name,line=$lines::$error"
             done < "$cdsfile"
               if [ -s $cdsfile ]; then
                   exit 1
