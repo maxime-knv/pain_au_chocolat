@@ -17,7 +17,7 @@ SRC_MY =	lib/my_str_to_word_array.c 	\
 			lib/my_putstr.c				\
 			lib/my_putchar.c			\
 			lib/my_put_nbr.c			\
-			lib/arrlen.c 				\
+			lib/arrlen.c 				
 			lib/my_copy_word_array.c	\
 			lib/my_get_array_size.c		\
 			lib/atobool.c			\
