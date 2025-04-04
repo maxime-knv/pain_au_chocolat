@@ -47,14 +47,14 @@ jobs:
         timeout-minutes: 2
       - run: make clean
       - run: |
-          IFS=","
-          for binary in $EXECUTABLE
-          if [ ! -f "$binary" ]; 
+          binary=$(echo $EXECUTABLE | tr "," "\n")
+          for bin in $binary
+          if [ ! -f "$bin" ]; 
           then
             echo "File is not exist"
             exit 1
           fi
-          if [ ! -x "$binary" ];
+          if [ ! -x "$bin" ];
             then
               echo "Executable is not exist"
               exit 1
