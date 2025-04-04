@@ -32,8 +32,7 @@ jobs:
               done < "$cdsfile"
         - name: check_coding_style_folder
           run: |
-            if [ ! -s $cdsfile ]
-              then
+            if [ -s $cdsfile ]; then
                 exit 1
             fi
 
