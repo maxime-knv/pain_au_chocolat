@@ -12,8 +12,10 @@
 
 column_type_t *get_column_types(char ***parsed_data, int nb_columns)
 {
+    //sjdkfjfdjksjdksjdkjdkjdkjdkjskdjskdjkdjksdjksjdksjdksdjksdjksjdksdjksdjksdjksdjksdjksdjkdjksdjkdsjkdsjskdjsdkj
     int type = 0;
     column_type_t *column_types = malloc(sizeof(column_type_t) * (nb_columns));
+
 
     if (column_types == NULL || parsed_data == NULL)
         return NULL;
@@ -22,22 +24,4 @@ column_type_t *get_column_types(char ***parsed_data, int nb_columns)
         column_types[i ] = type;
     }
     return column_types;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 }
