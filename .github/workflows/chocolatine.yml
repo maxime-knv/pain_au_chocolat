@@ -24,11 +24,11 @@ jobs:
               cdsfile="coding-style-reports.log"
               IFS=":"
               while read -r file_name lines error_type error ; do
-                echo "::workflow-command parameter1=error,parameter2=lines::file_name"
+                echo "::error file=app.js,line=1::Missing semicolon"
                 echo "$error_type $file_name $lines $error"
               done < "$cdsfile"
         - run: |
-            if [ -s cdsfile ]
+            if [ -s "$cdsfile" ]
               then
                 exit 1
             fi
