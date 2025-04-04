@@ -18,12 +18,12 @@ jobs:
         - uses: actions/checkout@v4
           with:
             fetch-depth: 0
-          id: check_coding_style
         - run: |
               check.sh $(pwd) $(pwd)
               cdsfile="coding-style-reports.log"
               IFS=":"
-              while read -r file_name lines error_type error ; do
+              while read -r file_name done lines error_type error ; do
+                file_name=`echo $file_name | cut -c 3-`
                 echo "::error file=$file_name,line=$lines::$error"
               done < "$cdsfile"
         - run: |
@@ -36,8 +36,7 @@ jobs:
     needs: check_coding_style
     runs-on: ubuntu-latest
     env:
-      EXECUTABLE: chocolatine
-    timeout-minutes: 2
+      EXECUTABLE: "chocolatine,chocolatine2"
     container:
       image: epitechcontent/epitest-docker
     steps:
@@ -45,23 +44,26 @@ jobs:
         with:
           fetch-depth: 0
       - run: make
+        timeout-minutes: 2
       - run: make clean
       - run: |
-          if [ ! -f ${{ env.EXECUTABLE }} ]; 
+          IFS=","
+          for binary in $EXECUTABLE
+          if [ ! -f "$binary" ]; 
           then
             echo "File is not exist"
             exit 1
           fi
-          if [ ! -x ${{ env.EXECUTABLE }} ];
+          if [ ! -x "$binary" ];
             then
-              echo "executable is not exist"
+              echo "Executable is not exist"
               exit 1
           fi
+          done
 
   run_tests:
     needs: check_program_compilation
     runs-on: ubuntu-latest
-    timeout-minutes: 2
     container:
       image: epitechcontent/epitest-docker
     steps:
@@ -77,7 +79,7 @@ jobs:
     env:
       MIRROR_URL: git@github.com:EpitechPGEPromo2029/B-DOP-200-PAR-2-1-chocolatine-maxime.kournikov.git
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: pixta-dev/repository-mirroring-action@v1

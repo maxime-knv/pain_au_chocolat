@@ -1,5 +1,5 @@
 /*
-11;rgb:1515/1515/1515** EPITECH PROJECT, 2025
+** EPITECH PROJECT, 2025
 ** caca
 ** File description:
 ** caca
