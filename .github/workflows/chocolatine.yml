@@ -28,11 +28,11 @@ jobs:
               IFS=":"
               while read -r file_name done lines error_type error ; do
                 file_name=`echo $file_name | cut -c 3-`
-                echo "::error file=$file_name,line=$lines::$error"
+                echo "::error file=$error_type,line=$lines::$error"
               done < "$cdsfile"
         - name: check_coding_style_folder
           run: |
-            if [ ! -s $cdsfile ]
+            if [ ! -s $coding-style-reports.log ]
               then
                 exit 1
             fi
