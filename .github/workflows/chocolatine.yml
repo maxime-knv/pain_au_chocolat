@@ -25,7 +25,10 @@ jobs:
               IFS=":"
               while read -r file_name lines error_type error ; do
                 echo "::error file=app.js,line=1::Missing semicolon"
+                echo "::debug::Set the Octocat variable"
+                echo "::notice file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
                 echo "$error_type $file_name $lines $error"
+                Write-Output "::notice file=app.js,line=1,col=5,endColumn=7,title=YOUR-TITLE::Missing semicolon"
               done < "$cdsfile"
         - run: |
             if [ -s "$cdsfile" ]
