@@ -48,17 +48,17 @@ jobs:
       - run: make clean
       - run: |
           binary=$(echo $EXECUTABLE | tr "," "\n")
-          for bin in $binary
-          if [ ! -f "$bin" ]; 
-          then
-            echo "File is not exist"
-            exit 1
-          fi
-          if [ ! -x "$bin" ];
+          for bin in $binary ; do
+            if [ ! -f "$bin" ]; 
             then
-              echo "Executable is not exist"
+              echo "File is not exist"
               exit 1
-          fi
+            fi
+            if [ ! -x "$bin" ];
+              then
+                echo "Executable is not exist"
+                exit 1
+            fi
           done
 
   run_tests:
