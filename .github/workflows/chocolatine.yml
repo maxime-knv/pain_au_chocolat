@@ -27,7 +27,7 @@ jobs:
                 echo "::error file=$file_name,line=$lines::$error"
               done < "$cdsfile"
         - run: |
-            if [ -s $cdsfile ]
+            if [ ! -s $cdsfile ]
               then
                 exit 1
             fi
